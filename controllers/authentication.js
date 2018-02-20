@@ -30,7 +30,7 @@ exports.signup = (req, res, next) => {
 
         return res.status(422).send(errors);
     }
-    user.findOne({email}, (err, existingUser) => {
+    User.findOne({email}, (err, existingUser) => {
         if(err) return next(err);
 
         if(existingUser) {

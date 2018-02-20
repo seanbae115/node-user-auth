@@ -15,4 +15,9 @@ module.exports = app => {
         }
         res.send(user);
     })
+    app.post('/another-route', requireAuth, (req, res) => {
+        res.send({
+            message: 'This is protected info'
+        });
+    })
 }
