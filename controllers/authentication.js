@@ -12,8 +12,8 @@ function tokenForUser(user) {
 };
 
 exports.signup = (req, res, next) => {
-    const {email, password, firstName, lastName} = req.body;
-    if (!email || !password || !firstName || !lastName) {
+    const {email, password} = req.body;
+    if (!email || !password) {
         const errors = [];
         if (!email) {
             errors.push('No email found');
@@ -21,13 +21,6 @@ exports.signup = (req, res, next) => {
         if (!password) {
             errors.push('No password found');
         }
-        if (!firstName) {
-            errors.push('No first name found');
-        }
-        if (!lastName) {
-            errors.push('No last name found');
-        }
-
         return res.status(422).send(errors);
     }
     User.findOne({email}, (err, existingUser) => {
